@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Imports. Make sure webdriver is executableby running
-# 'chmod +x ./chromedriver' in directory
+# Imports. Make sure webdriver is executableby running 'chmod +x ./chromedriver' in directory
  
 from selenium import webdriver
 from bs4 import BeautifulSoup
