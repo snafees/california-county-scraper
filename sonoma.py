@@ -24,6 +24,7 @@ print(num_of_tests)
 deaths = soup.findAll("p", {"class": "counterValue"})[2].contents[0]
 print(deaths)
 
-total = soup.findAll("p", {"class": "counterValue"})[4].contents[0]
-print(total)
+total_pos_cases = soup.findAll("p", {"class": "counterValue"})[4].contents[0]
+print(total_pos_cases)
+
 
