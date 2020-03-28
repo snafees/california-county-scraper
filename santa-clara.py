@@ -16,8 +16,10 @@ print(soup.prettify())
 
 # Select Figures
 positiveCases = soup.find_all("text", {"class": "value"})[0].title.contents[0]
+newCases = soup.find_all("text", {"class": "value"})[1].title.contents[0]
+deaths = soup.find_all("text", {"class": "value"})[2].title.contents[0]
 
-deathsRaw = soup.find("table", {"class": "contacts_table"}).div.select('em')[1].contents[0]
+print(deaths)
 
 # Remove *
 positiveCasesClean = positiveCasesRaw.replace("*", "")
