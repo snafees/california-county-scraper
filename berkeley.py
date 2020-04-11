@@ -5,12 +5,12 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 
 berkeley = "https://www.cityofberkeley.info/coronavirus/"
-driver = webdriver.Chrome('./chromedriver')
+options = webdriver.ChromeOptions()
+options.add_argument('headless')
+driver = webdriver.Chrome(chrome_options=options)
 driver.get(berkeley)
 html = driver.page_source
 soup = BeautifulSoup(html, features="html.parser")
-print(soup.prettify())
 
 positiveCases = soup.find_all('strong')[0].contents[0]
-
-
+print(positiveCases)

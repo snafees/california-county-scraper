@@ -4,18 +4,17 @@
 
 from selenium import webdriver
 from bs4 import BeautifulSoup
-alameda = "http://www.acphd.org/2019-ncov.aspx"
+from append import append
+import time
+
+sonoma = "https://ac-hcsa.maps.arcgis.com/apps/opsdashboard/index.html#/948c67558cff414dbbee1a78fcbab1c9"
 driver = webdriver.Chrome('./chromedriver')
-driver.get(alameda)
+driver.get(sonoma)
+time.sleep(10)
+
 html = driver.page_source
 soup = BeautifulSoup(html, features="html.parser")
-print(soup)
-# Select Figures
-positiveCasesRaw = soup.find("table", {"class": "contacts_table"}).div.select('em')[0].contents[0]
-deathsRaw = soup.find("table", {"class": "contacts_table"}).div.select('em')[1].contents[0]
 
-# Remove *
-positiveCasesClean = positiveCasesRaw.replace("*", "")
-deathsClean = positiveCasesRaw.replace("*", "")
-print("Num of positive cases in Alameda County" + positiveCasesClean)
-print(deathsClean)
+# Select Figures
+positiveCasesRaw = soup.find("full-container").findAll("div")[4]
+print(positiveCasesRaw)

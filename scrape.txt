@@ -1,0 +1,21 @@
+{
+    "san-francisco": [],
+    "sonoma": [
+        {
+            "date": "2020-04-11",
+            "total-cases": "797",
+            "active-cases": "N/A",
+            "deaths": "2",
+            "recovered": "N/A",
+            "tests": "N/A"
+        },
+        {
+            "date": "2020-04-11",
+            "total-cases": "145",
+            "active-cases": "85",
+            "deaths": "2",
+            "recovered": "58",
+            "tests": "3,389"
+        }
+    ]
+}
