@@ -9,7 +9,7 @@ driver = webdriver.Chrome('./chromedriver')
 driver.get(alameda)
 html = driver.page_source
 soup = BeautifulSoup(html, features="html.parser")
-print(soup)
+print(soup.prettify())
 # Select Figures
 positiveCasesRaw = soup.find("table", {"class": "contacts_table"}).div.select('em')[0].contents[0]
 deathsRaw = soup.find("table", {"class": "contacts_table"}).div.select('em')[1].contents[0]
