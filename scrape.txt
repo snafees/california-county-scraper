@@ -1,0 +1,20 @@
+{
+    "san_francisco": [],
+    "sonoma": [],
+    "berkeley": [
+        {
+            "date": "2020-04-11",
+            "total-cases": "N/A",
+            "active-cases": "38",
+            "deaths": "1",
+            "recovered": "N/A",
+            "tests": "N/A"
+        }
+    ],
+    "alameda": [],
+    "contra_costa": [],
+    "marin": [],
+    "napa": [],
+    "san_mateo": [],
+    "santa_clara": []
+}

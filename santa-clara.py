@@ -1,26 +1,15 @@
-# -*- coding: utf-8 -*-
-
-from selenium import webdriver
+# Santa Clara County
 from bs4 import BeautifulSoup
-import time
+from scraper_init import scrape
+from append import append
 
-alameda = "https://app.powerbigov.us/view?r=eyJrIjoiODI1YmRlMjUtODUwOC00ZDE0LWExMjMtMjA2ZDI2MTRlMGE4IiwidCI6IjBhYzMyMDJmLWMzZTktNGY1Ni04MzBkLTAxN2QwOWQxNmIzZiJ9" 
-driver = webdriver.Chrome('./chromedriver')
-driver.get(alameda)
-
-time.sleep(10)
-html = driver.page_source
-soup = BeautifulSoup(html)
-
-print(soup.prettify())
+# Init Scraper and Return Soup
+soup = scrape('https://app.powerbigov.us/view?r=eyJrIjoiZTg2MTlhMWQtZWE5OC00ZDI3LWE4NjAtMTU3YWYwZDRlOTNmIiwidCI6IjBhYzMyMDJmLWMzZTktNGY1Ni04MzBkLTAxN2QwOWQxNmIzZiJ9', 5)
 
 # Select Figures
-positiveCases = soup.find_all("text", {"class": "value"})[0].title.contents[0]
-newCases = soup.find_all("text", {"class": "value"})[1].title.contents[0]
-deaths = soup.find_all("text", {"class": "value"})[2].title.contents[0]
+# positiveCases = soup.find_all("text", {"class": "value"})[0].title.contents[0]
+# newCases = soup.find_all("text", {"class": "value"})[1].title.contents[0]
+# deaths = soup.find_all("text", {"class": "value"})[2].title.contents[0]
 
-print(deaths)
-
-# Remove *
-positiveCasesClean = positiveCasesRaw.replace("*", "")
-deathsClean = deathsRaw.replace("*", "")
+# Append to JSON File
+# append('santa_clara', 'N/A', positiveCases, deaths, 'N/A', 'N/A')
