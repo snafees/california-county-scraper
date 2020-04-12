@@ -1,18 +1,14 @@
-# -*- coding: utf-8 -*-
-
-# Imports. Make sure webdriver is executable by running 'chmod +x ./chromedriver' in directory
-from selenium import webdriver
+# Sonoma County
 from bs4 import BeautifulSoup
+from scraper_init import scrape
 from append import append
 
-sonoma = "https://socoemergency.org/"
-driver = webdriver.Chrome('./chromedriver')
-driver.get(sonoma)
-html = driver.page_source
-soup = BeautifulSoup(html, features="html.parser")
+# Init Scraper and Return Soup
+soup = scrape('https://socoemergency.org/', 5)
 
 # Select Figures
 content = soup.findAll("table", {"class": "cvTable"})[0].findAll("td")
+print(content)
 
 totalCases = content[0].contents[0]
 activeCases = content[1].contents[0]
@@ -21,4 +17,4 @@ deaths = content[3].contents[0]
 tests = content[4].contents[0]
 
 # Append to JSON File
-append('sonoma', totalCases, activeCases, deaths, recoveredCases, tests) 
+append('sonoma', totalCases, activeCases, deaths, recoveredCases, tests)

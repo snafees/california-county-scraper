@@ -1,16 +1,15 @@
-# -*- coding: utf-8 -*-
-
-# Imports. Make sure webdriver is executable by running 'chmod +x ./chromedriver' in directory
-from selenium import webdriver
+# Berkeley 
 from bs4 import BeautifulSoup
+from scraper_init import scrape
+from append import append
 
-berkeley = "https://www.cityofberkeley.info/coronavirus/"
-options = webdriver.ChromeOptions()
-options.add_argument('headless')
-driver = webdriver.Chrome(chrome_options=options)
-driver.get(berkeley)
-html = driver.page_source
-soup = BeautifulSoup(html, features="html.parser")
+# Init Scraper and Return Soup
+soup = scrape('https://www.cityofberkeley.info/coronavirus/', 5)
 
-positiveCases = soup.find_all('strong')[0].contents[0]
-print(positiveCases)
+### SELECT VARIABLES
+# positiveCases = soup.find_all('strong')[0].contents[0]
+# deaths = "1"
+# print(positiveCases)
+
+# Append to JSON File
+append('berkeley', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A')
