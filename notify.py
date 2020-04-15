@@ -2,30 +2,45 @@
 
 def send(county, error):
     import smtplib
+    from email.mime.multipart import MIMEMultipart
+    from email.mime.text import MIMEText
+    from email.mime.base import MIMEBase
+    from email import encoders
 
-    gmail_user = 'czbiohubscraper@gmail.com'
-    gmail_password = ''
+    fromaddr = "czbiohubscraper@gmail.com"
+    password = ""
+    toaddr = ['johnsimsemail@gmail.com']
 
-    sent_from = gmail_user
-    to = ['johnsimsemail@gmail.com']
-    subject = 'Scrape Failed for ' + county + ''
-    body = 'Hey, whats up?\n\n- You'
+    msg = MIMEMultipart()
 
-    email_text = """\
-    From: %s
-    To: %s
-    Subject: %s
+    msg['From'] = fromaddr
+    msg['To'] = ", ".join(toaddr)
+    msg['Subject'] = "Scraping Error Notification"
 
-    %s
-    """ % (sent_from, ", ".join(to), subject, body)
+    body = """\
+    <html>
+      <head></head>
+      <body>
+    <p>DO NOT REPLY TO THIS EMAIL<br>
+    <br>
+    The scraper for <b>""" + county + """</b> failed with the error message<br>
+    <br>
+    <b><i>""" + str(error) + """</i></b> <br>
+    <br>
+    Please dubug the script locally and update the corrected file in the server asap.
+    <br>
+        </p>
+      </body>
+    </html>
+    """
 
-    try:
-        server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-        server.ehlo()
-        server.login(gmail_user, gmail_password)
-        server.sendmail(sent_from, to, email_text)
-        server.close()
-    except Exception as e:
-        print(e)
+    msg.attach(MIMEText(body, 'html'))
 
-#send()
+    server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+    server.ehlo()
+    server.login(fromaddr, password)
+    text = msg.as_string()
+    server.sendmail(fromaddr, toaddr, text)
+    server.close()
+
+#send('Sonoma', 'This is an error')
