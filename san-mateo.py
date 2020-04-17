@@ -3,13 +3,18 @@ from bs4 import BeautifulSoup
 from scraper_init import scrape
 from append import append
 
+
 # Init Scraper and Return Soup
-soup = scrape('https://www.smchealth.org/coronavirus', 5)
+soup = scrape('https://app.powerbigov.us/view?r=eyJrIjoiODZkYzM4MGYtNDkxNC00Y2ZmLWIyYTUtMDNhZjlmMjkyYmJkIiwidCI6IjBkZmFmNjM1LWEwNGQtNDhjYy1hN2UzLTZkYTFhZjA4ODNmOSJ9', 5)
 
-# Select Figures
-positiveCases_table = soup.find_all("table")[0] #{"clas: "contacts_table"}).div.select('em')[0].contents[0] #alameda
-positiveCases = soup.find_all("table")[0].find_all('td')[1].text
-deaths = soup.find_all("table")[0].find_all('td')[3].text
-
-# Append to JSON File
-append('san_mateo', 'N/A', positiveCases, deaths, 'N/A', 'N/A')
+try: 
+    # Select Figures
+    select = soup.find_all("text")
+    containers = soup.find_all("visual-container-modern")
+    positiveCases = select[0].find("title").contents[0]
+    deaths = containers[8].find_all("text")[0].find("title").contents[0]
+    
+    # Append to JSON File
+    append('san_mateo', 'N/A', positiveCases, deaths, 'N/A', 'N/A')
+except Exception as e:
+    send("San Mateo", e)    
