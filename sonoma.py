@@ -5,7 +5,7 @@ from append import append
 from notify import send
 
 # Init Scraper and Return Soup
-soup = scrape('https://12356dsf.com/', 1)
+soup = scrape('https://socoemergency.org/', 1)
 
 # Select Figures
 
